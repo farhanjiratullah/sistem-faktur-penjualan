@@ -327,7 +327,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 👥 Authors
 
@@ -340,12 +340,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 -   DomPDF Library
 -   Pest PHP Testing Framework
 
-````
-
 ## File Dokumentasi Tambahan
 
 ### 1. LICENSE
-```text
+
+```
 MIT License
 
 Copyright (c) 2024 Sistem Faktur Penjualan
@@ -367,7 +366,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-````
+```
 
 ### 2. .gitignore
 
