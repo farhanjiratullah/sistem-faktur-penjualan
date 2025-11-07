@@ -1,61 +1,444 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Dokumentasi Program - Sistem Faktur Penjualan
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🧾 Sistem Faktur Penjualan
 
-## About Laravel
+Aplikasi web untuk mengelola faktur penjualan dengan fitur CRUD lengkap, cetak faktur, dan manajemen stok otomatis.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   **🔐 Authentication System** - Register, Login, Logout dengan middleware protection
+-   **🏢 Manajemen Perusahaan** - CRUD data perusahaan
+-   **👥 Manajemen Customer** - CRUD data customer dengan export PDF
+-   **🧾 Manajemen Penjualan** - Buat, edit, hapus faktur penjualan
+-   **🖨️ Cetak Faktur** - Preview dan export faktur dalam format PDF
+-   **📊 Dashboard** - Ringkasan data penjualan
+-   **🎯 Validasi Form** - Validasi server-side dan client-side
+-   **🧪 Testing Suite** - Comprehensive Pest testing
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Teknologi yang Digunakan
 
-## Learning Laravel
+-   **Backend**: Laravel 12.x
+-   **Frontend**: Tailwind CSS, Blade
+-   **Database**: MySQL
+-   **PDF Export**: DomPDF
+-   **Testing**: Pest PHP
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 Requirements
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   PHP 8.3+
+-   Composer
+-   MySQL 5.7+
+-   Node.js & NPM
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Instalasi
 
-## Laravel Sponsors
+### 1. Clone Repository
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone https://github.com/username/sistem-faktur-penjualan.git
+cd sistem-faktur-penjualan
+```
 
-### Premium Partners
+### 2. Install Dependencies
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+composer install
+npm install
+```
 
-## Contributing
+### 3. Setup Environment
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Code of Conduct
+### 4. Konfigurasi Database
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Edit file `.env`:
 
-## Security Vulnerabilities
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=username
+DB_PASSWORD=password
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Jalankan Migrasi dan Seeder
 
-## License
+```bash
+php artisan migrate --seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 6. Build Assets
+
+```bash
+npm run build
+```
+
+### 7. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Akses aplikasi di: http://localhost:8000
+
+## 👤 Register
+
+Setelah menjalankan seeder, lakukan registrasi di endpoint http://localhost/register
+
+## 📁 Struktur Project
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── CustomerController.php
+│   │   ├── PerusahaanController.php
+│   │   ├── PenjualanController.php
+│   │   └── Auth/
+│   ├── Middleware/
+│   └── Models/
+│       ├── Customer.php
+│       ├── Perusahaan.php
+│       ├── Produk.php
+│       ├── Faktur.php
+│       └── DetailFaktur.php
+database/
+├── migrations/
+├── seeders/
+└── factories/
+resources/
+├── views/
+│   ├── layouts/
+│   ├── customer/
+│   ├── perusahaan/
+│   ├── penjualan/
+│   └── auth/
+tests/
+├── Feature/
+│   ├── AuthTest.php
+│   ├── CustomerTest.php
+│   ├── PerusahaanTest.php
+│   └── PenjualanTest.php
+└── Unit/
+```
+
+## 🗃️ Database Schema
+
+### Tabel: `faktur`
+
+```sql
+- id_faktur (PK)
+- no_faktur (String, Unique)
+- tgl_faktur (Date)
+- id_customer (FK)
+- id_perusahaan (FK)
+- due_date (Date)
+- metode_bayar (Enum: TUNAI, TRANSFER, KREDIT)
+- ppn (Decimal)
+- dp (Decimal)
+- grand_total (Decimal)
+- user (String)
+```
+
+### Tabel: `detail_faktur`
+
+```sql
+- id_detail (PK)
+- no_faktur (FK)
+- id_produk (FK)
+- qty (Integer)
+- price (Decimal)
+```
+
+### Tabel: `customer`
+
+```sql
+- id_customer (PK)
+- nama_customer (String)
+- perusahaan_cust (String)
+- alamat (Text)
+```
+
+### Tabel: `perusahaan`
+
+```sql
+- id_perusahaan (PK)
+- nama_perusahaan (String)
+- alamat (Text)
+- no_telp (String)
+- fax (String)
+```
+
+### Tabel: `produk`
+
+```sql
+- id_produk (PK)
+- nama_produk (String)
+- price (Decimal)
+- stock (Integer)
+```
+
+## 🧪 Testing
+
+### Menjalankan Tests
+
+```bash
+# Run semua tests
+./vendor/bin/pest
+
+# Run tests dengan coverage
+./vendor/bin/pest --coverage
+
+# Run specific test
+./vendor/bin/pest tests/Feature/AuthTest.php
+```
+
+### Test Coverage
+
+-   ✅ Authentication (Register, Login, Logout)
+-   ✅ Customer CRUD Operations
+-   ✅ Perusahaan CRUD Operations
+-   ✅ Penjualan CRUD dengan Stock Management
+-   ✅ Form Validations
+-   ✅ Middleware Protection
+-   ✅ PDF Export
+
+## 📊 Routes
+
+### Public Routes
+
+-   `GET /login` - Form login
+-   `POST /login` - Proses login
+-   `GET /register` - Form registrasi
+-   `POST /register` - Proses registrasi
+
+### Protected Routes
+
+-   `GET /dashboard` - Dashboard
+-   `GET /customer` - Data customer
+-   `GET /customer/create` - Form tambah customer
+-   `POST /customer` - Simpan customer
+-   `GET /customer/{id}/edit` - Form edit customer
+-   `PUT /customer/{id}` - Update customer
+-   `DELETE /customer/{id}` - Hapus customer
+-   `GET /customer/preview` - Preview data customer
+-   `GET /customer/pdf` - Export PDF customer
+
+-   `GET /perusahaan` - Data perusahaan
+-   `GET /perusahaan/create` - Form tambah perusahaan
+-   `POST /perusahaan` - Simpan perusahaan
+-   `GET /perusahaan/{id}/edit` - Form edit perusahaan
+-   `PUT /perusahaan/{id}` - Update perusahaan
+-   `DELETE /perusahaan/{id}` - Hapus perusahaan
+
+-   `GET /penjualan` - Data penjualan
+-   `GET /penjualan/create` - Form tambah penjualan
+-   `POST /penjualan` - Simpan penjualan
+-   `GET /penjualan/{id}/edit` - Form edit penjualan
+-   `PUT /penjualan/{id}` - Update penjualan
+-   `DELETE /penjualan/{id}` - Hapus penjualan
+-   `GET /penjualan/{id}/preview` - Preview faktur
+-   `GET /penjualan/{id}/pdf` - Export PDF faktur
+
+## 🎨 UI Components
+
+### Layout
+
+-   **Header**: Navigation bar dengan user menu
+-   **Sidebar**: Menu navigasi yang collapse
+-   **Main Content**: Area konten utama
+-   **Footer**: Informasi copyright
+
+### Form Components
+
+-   **Input Text**: Dengan validasi error display
+-   **Textarea**: Untuk input alamat
+-   **Dynamic Product Table**: Untuk detail penjualan
+
+## ⚙️ Konfigurasi
+
+### Environment Variables
+
+```env
+APP_NAME="Sistem Faktur Penjualan"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=faktur_penjualan
+DB_USERNAME=root
+DB_PASSWORD=
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+## 🚀 Deployment
+
+### Production Setup
+
+1. Set `APP_ENV=production`
+2. Set `APP_DEBUG=false`
+3. Generate application key: `php artisan key:generate`
+4. Optimize: `php artisan optimize`
+
+### Security Considerations
+
+-   Gunakan HTTPS
+-   Set secure cookies
+-   Implement rate limiting
+-   Regular security updates
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit changes: `git commit -m 'Add AmazingFeature'`
+4. Push to branch: `git push origin feature/AmazingFeature`
+5. Open Pull Request
+
+## 📝 Changelog
+
+### v1.0.0 (2024-01-01)
+
+-   ✅ Initial release
+-   ✅ Authentication system
+-   ✅ CRUD operations
+-   ✅ PDF export
+-   ✅ Testing suite
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Problem**: Database connection error
+**Solution**: Periksa konfigurasi database di `.env`
+
+**Problem**: PDF tidak bisa di-generate
+**Solution**: Install extension GD dan DOM di PHP
+
+**Problem**: Test failing
+**Solution**: Run `php artisan config:clear` dan `php artisan cache:clear`
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+-   **Farhan Jiratullah** - [GitHub Profile](https://github.com/farhanjiratullah)
+
+## 🙏 Acknowledgments
+
+-   Laravel Framework
+-   Tailwind CSS
+-   DomPDF Library
+-   Pest PHP Testing Framework
+
+````
+
+## File Dokumentasi Tambahan
+
+### 1. LICENSE
+```text
+MIT License
+
+Copyright (c) 2024 Sistem Faktur Penjualan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+````
+
+### 2. .gitignore
+
+```gitignore
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+```
+
+### 3. CONTRIBUTING.md
+
+```markdown
+# Contributing Guide
+
+## Code Style
+
+-   Follow PSR-12 coding standards
+-   Use meaningful variable names
+-   Write descriptive commit messages
+
+## Testing
+
+-   Write tests for new features
+-   Ensure all tests pass before submitting PR
+-   Test both success and failure scenarios
+
+## Pull Request Process
+
+1. Update documentation if needed
+2. Add tests for new functionality
+3. Ensure CI/CD pipeline passes
+4. Get review from maintainers
+```
+
+### 4. CHANGELOG.md
+
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.0.0] - 2024-01-01
+
+### Added
+
+-   Authentication system
+-   CRUD operations for all modules
+-   PDF export functionality
+-   Comprehensive test suite
+-   Responsive design with Tailwind CSS
+```
