@@ -312,16 +312,6 @@ MAIL_FROM_NAME="${APP_NAME}"
 4. Push to branch: `git push origin feature/AmazingFeature`
 5. Open Pull Request
 
-## 📝 Changelog
-
-### v1.0.0 (2024-01-01)
-
--   ✅ Initial release
--   ✅ Authentication system
--   ✅ CRUD operations
--   ✅ PDF export
--   ✅ Testing suite
-
 ## 🐛 Troubleshooting
 
 ### Common Issues
@@ -398,47 +388,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-```
-
-### 3. CONTRIBUTING.md
-
-```markdown
-# Contributing Guide
-
-## Code Style
-
--   Follow PSR-12 coding standards
--   Use meaningful variable names
--   Write descriptive commit messages
-
-## Testing
-
--   Write tests for new features
--   Ensure all tests pass before submitting PR
--   Test both success and failure scenarios
-
-## Pull Request Process
-
-1. Update documentation if needed
-2. Add tests for new functionality
-3. Ensure CI/CD pipeline passes
-4. Get review from maintainers
-```
-
-### 4. CHANGELOG.md
-
-```markdown
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
-## [1.0.0] - 2024-01-01
-
-### Added
-
--   Authentication system
--   CRUD operations for all modules
--   PDF export functionality
--   Comprehensive test suite
--   Responsive design with Tailwind CSS
 ```
