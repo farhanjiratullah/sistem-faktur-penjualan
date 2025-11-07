@@ -58,22 +58,18 @@
 
                             <div>
                                 <label for="id_perusahaan" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Perusahaan
+                                    Perusahaan <span class="text-red-500">*</span>
                                 </label>
-                                <div id="perusahaan_customer"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 min-h-[42px]">
-                                    @if (old('id_perusahaan'))
-                                        @php
-                                            $selectedPerusahaan = $perusahaans->firstWhere(
-                                                'id_perusahaan',
-                                                old('id_perusahaan'),
-                                            );
-                                        @endphp
-                                        {{ $selectedPerusahaan ? $selectedPerusahaan->nama_perusahaan : 'Pilih customer untuk melihat perusahaan' }}
-                                    @else
-                                        Pilih customer untuk melihat perusahaan
-                                    @endif
-                                </div>
+                                <select name="id_perusahaan" id="id_perusahaan" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 @error('id_perusahaan') border-red-500 @enderror">
+                                    <option value="">Pilih Perusahaan</option>
+                                    @foreach ($perusahaans as $perusahaan)
+                                        <option value="{{ $perusahaan->id_perusahaan }}"
+                                            {{ old('id_perusahaan') == $perusahaan->id_perusahaan ? 'selected' : '' }}>
+                                            {{ $perusahaan->nama_perusahaan }}
+                                        </option>
+                                    @endforeach
+                                </select>
                                 @error('id_perusahaan')
                                     <div class="mt-1 text-sm text-red-600 flex items-center">
                                         <i class="fas fa-exclamation-circle mr-2"></i>
@@ -108,7 +104,6 @@
                                     <option value="">Pilih Customer</option>
                                     @foreach ($customers as $customer)
                                         <option value="{{ $customer->id_customer }}" data-alamat="{{ $customer->alamat }}"
-                                            data-perusahaan="{{ $customer->perusahaan_cust }}"
                                             {{ old('id_customer') == $customer->id_customer ? 'selected' : '' }}>
                                             {{ $customer->nama_customer }} - {{ $customer->perusahaan_cust }}
                                         </option>
@@ -386,13 +381,13 @@
                                 class="produk-select w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             <option value="">Pilih Produk</option>
                             ${produkData.map(p => `
-                                                        <option value="${p.id_produk}" 
-                                                                data-price="${p.price}"
-                                                                data-stock="${p.stock}"
-                                                                ${produk && produk.id_produk == p.id_produk ? 'selected' : ''}>
-                                                            ${p.nama_produk} - ${formatCurrency(p.price)} (Stock: ${p.stock})
-                                                        </option>
-                                                    `).join('')}
+                                        <option value="${p.id_produk}" 
+                                                data-price="${p.price}"
+                                                data-stock="${p.stock}"
+                                                ${produk && produk.id_produk == p.id_produk ? 'selected' : ''}>
+                                            ${p.nama_produk} - ${formatCurrency(p.price)} (Stock: ${p.stock})
+                                        </option>
+                                    `).join('')}
                         </select>
                     </div>
                     <div>
@@ -405,10 +400,11 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Harga</label>
-                        <input type="number" readonly
+                        <input type="number" 
                                name="produk[${produkCount}][price]" 
                                value="${produk ? produk.price : ''}"
                                step="0.01"
+                               readonly
                                min="0"
                                class="price-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     </div>
@@ -507,9 +503,7 @@
             document.getElementById('id_customer').addEventListener('change', function() {
                 const selectedOption = this.options[this.selectedIndex];
                 const alamat = selectedOption.getAttribute('data-alamat');
-                const perusahaan = selectedOption.getAttribute('data-perusahaan');
                 document.getElementById('alamat_customer').textContent = alamat || '-';
-                document.getElementById('perusahaan_customer').textContent = perusahaan || '-';
             });
 
             // Recalculate when PPN or DP changes
